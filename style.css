@@ -1,0 +1,270 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --card-bg: rgba(255,255,255,.06);
+  --card-border: rgba(255,255,255,.85);
+  --divider: rgba(255,255,255,.45);
+  --glow: rgba(255,255,255,.45);
+}
+
+.light{
+  --card-bg: rgba(0,0,0,.04);
+  --card-border: rgba(0,0,0,.75);
+  --divider: rgba(0,0,0,.30);
+  --glow: rgba(0,0,0,.35);
+}
+
+:root,
+.light {
+  --text-color: #fff;
+}
+
+body {
+  background: var(--bg--url) no-repeat top center/cover;
+  height: 100vh;
+  background-image: url(./imagens/pxfuel.jpg)
+}
+
+body * {
+  font-family: "inter", sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  width: 100%;
+  max-width: 588px;
+  margin: 56px auto 0px;
+  padding: 0 24px;
+}
+
+/* profile */
+
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img {
+  width: 112px;
+  border-radius: 50%;
+}
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+/* lista de links (mantém seus cards) */
+ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 24px 0;
+  width: 100%;
+}
+
+/* cada link como card */
+ul li a{
+  position: relative;
+  display: block;
+  padding: 16px 24px;
+  padding-left: 70px;                /* coluna fixa do ícone */
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);   /* SEMPRE visível */
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: background .2s ease, border-color .2s ease, box-shadow .25s ease;
+}
+
+ul li a:hover {
+  background: rgba(255,255,255,0.10);
+  border-color: var(--text-color);
+}
+
+/* linha (divisória) visível ENTRE os cards */
+ul li{ position: relative; }
+ul li + li::before {
+  content: none !important;
+  display: none !important;
+}
+
+ul li a i,
+ul li a .fa-youtube,
+ul li a .fa-cat,
+ul li a .fa-twitch{
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+ul li a:hover{
+  background: var(--card-bg);
+  border-color: #fff;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.9) inset,   /* realça a borda por dentro */
+    0 0 24px 6px var(--glow);               /* glow externo suave */
+}
+
+ul li:not(:last-child) {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+ul li a .fa-twitch  { animation: pulseIcon 2s  ease-in-out infinite; }
+ul li a .fa-youtube { animation: pulseIcon 2s ease-in-out infinite; }
+ul li a .fa-cat     { animation: pulseIcon 2s ease-in-out infinite; }
+
+
+/* switch */
+
+#switch {
+  position: relative;
+  width: 64px;
+  margin: 4px auto;
+}
+
+#switch button {
+  height: 32px;
+  width: 32px;
+  background: white var(--switch--bg--url) no-repeat center;
+  border: 0px;
+  border-radius: 50%;
+
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+
+  animation: slide-back 0.4s;
+}
+
+.light #switch button {
+  animation: slide-in 0.4s forwards;
+
+
+}
+
+#switch button:hover {
+  outline: 5px solid grey;
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* links */
+
+@keyframes pulseIcon {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50%      { transform: translateY(-50%) scale(1.50); } /* ajuste a intensidade */
+}
+
+
+#social-links {
+  display: flex;
+  font-size: 24px;
+  justify-content: center;
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 50%;
+}
+
+#social-links a:hover {
+  background: rgba(253, 253, 253, 0.39);
+}
+
+/* Marca d’água mínima no canto inferior esquerdo */
+.brand-mark{
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  width: clamp(28px, 5vw, 56px); /* tamanho responsivo e discreto */
+  height: auto;
+  filter: grayscale(1);          /* mantém neutro/branco */
+  pointer-events: none;          /* não bloqueia cliques */
+  user-select: none;
+  z-index: 5;                    /* acima do fundo, atrás dos cards se usar z maiores */
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+#Blessed {
+  font-style: italic;
+  opacity: 70%;
+}
+
+@media (min-width: 700px) {
+  :root {
+    --bg--url: url(./assets/26430.jpg);
+  }
+
+  .light {
+    --bg--url: url(./assets/montanha.jpg);
+  }
+}
+
+@keyframes slide-in {
+  from{
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+
+
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@media (max-width: 480px){
+  .brand-mark{ opacity: 0.14; left: 12px; bottom: 12px; }
+}
+
