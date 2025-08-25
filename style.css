@@ -134,6 +134,33 @@ ul li:not(:last-child) {
  ul li a .fa-kickstarter { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-youtube { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-cat { animation: pulseIcon 2s ease-in-out infinite; }
+ul li a .pulse { animation: pulseIcon 2s ease-in-out infinite; }
+
+/* posicionamento do ícone (genérico para i, svg e img) */
+ul li a i,
+ul li a svg.icon,
+ul li a img.icon{
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);   /* base p/ a animação */
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul li a .icon.mask{
+  position: absolute; left: 24px; top: 50%; transform: translateY(-50%);
+  width: 35px; height: 35px;
+  background: var(--text-color);                 /* cor do ícone */
+  -webkit-mask: url('/imagens/1688877-middle-removebg-preview.svg') no-repeat center / contain;
+          mask: url('/imagens/1688877-middle-removebg-preview.svg') no-repeat center / contain;
+}
+
+/* se usar <img>, garanta o encaixe */
+ul li a img.icon{ object-fit: contain; }
 
 
 
