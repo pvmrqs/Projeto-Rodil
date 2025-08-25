@@ -30,9 +30,9 @@
 
       <ul >
         <li>
-          <a>
-            <div><p class="link6">Streamer, Criador de Conteúdo e TOP 1 Shaco Mundial!</p></div>
-          </a>
+          <!-- Texto clicável -->
+          <a href="#" id="openPopup">
+           Streamer, Criador de Conteúdo e TOP 1 Shaco Mundial! </a>
         </li>
 
     <li>
@@ -100,10 +100,18 @@
          <a href="https://www.youtube.com/watch?v=CsHiG-43Fzg" target="_blank">Eu sou louco, o chat é louco, mas somos uma família!</a>
       </footer>
 
-      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> 
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <script src="./script.js"></script>
+      <script src="./popup.js" defer></script>
 
         <img src="./imagens/thumb0-640x360-removebg-preview (1) (1).png" alt="Marca d'água R" class="brand-mark" />
+
+<div id="popup" class="modal" aria-hidden="true">
+  <div class="modal_content" role="dialog" aria-modal="true">
+    <button type="button" class="modal_close" aria-label="Fechar" title="Fechar">✕</button>
+
+    <img id="popupImage" src="./imagens/top_1_shaco_world.png" alt="Minha foto">
+  </div>
+</div>
+
+
   </body>
 </html>

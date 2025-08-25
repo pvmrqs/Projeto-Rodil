@@ -26,7 +26,7 @@
 body {
   background: var(--bg--url) no-repeat top center/cover;
   min-height: 100vh;
-  background-image: url(./imagens/pxfuel.jpg);
+  background-image: url(./imagens/fundo_site_links.jpg);
   position: relative;
   
 }
@@ -274,5 +274,65 @@ footer a {
 
 @media (max-width: 480px){
   .brand-mark{ opacity: 0.14; left: 12px; bottom: 12px; }
+}
+
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0,0,0,.65);
+  z-index: 9999;
+}
+.modal.is-open{ display: flex; }
+
+.modal_content{
+  position: relative;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 0 24px 6px var(--glow);
+  overflow: hidden;
+  max-width: min(92vw, 900px);
+  max-height: 88vh;
+  animation: popIn .2s ease;
+}
+.modal_content img{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 88vh;
+  object-fit: contain;
+  background: #000;
+}
+
+.modal_close{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2; /* fica acima da imagem */
+}
+.modal_close:hover{ background: rgba(0,0,0,.6); }
+.modal_close:focus-visible{
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@keyframes popIn {
+  from { transform: scale(.96); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
 }
 
