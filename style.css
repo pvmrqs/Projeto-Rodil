@@ -25,8 +25,10 @@
 
 body {
   background: var(--bg--url) no-repeat top center/cover;
-  height: 100vh;
-  background-image: url(./imagens/pxfuel.jpg)
+  min-height: 100vh;
+  background-image: url(./imagens/pxfuel.jpg);
+  position: relative;
+  
 }
 
 body * {
@@ -128,9 +130,13 @@ ul li:not(:last-child) {
   padding: 0;
 }
 
-ul li a .fa-twitch  { animation: pulseIcon 2s  ease-in-out infinite; }
-ul li a .fa-youtube { animation: pulseIcon 2s ease-in-out infinite; }
-ul li a .fa-cat     { animation: pulseIcon 2s ease-in-out infinite; }
+ ul li a .fa-twitch { animation: pulseIcon 2s ease-in-out infinite; }
+ ul li a .fa-kickstarter { animation: pulseIcon 2s ease-in-out infinite; }
+ ul li a .fa-youtube { animation: pulseIcon 2s ease-in-out infinite; }
+ ul li a .fa-cat { animation: pulseIcon 2s ease-in-out infinite; }
+
+
+
 
 
 
@@ -206,8 +212,9 @@ ul li a .fa-cat     { animation: pulseIcon 2s ease-in-out infinite; }
 }
 
 /* Marca d’água mínima no canto inferior esquerdo */
+
 .brand-mark{
-  position: fixed;
+  position: absolute;
   left: 16px;
   bottom: 16px;
   width: clamp(28px, 5vw, 56px); /* tamanho responsivo e discreto */
@@ -215,7 +222,7 @@ ul li a .fa-cat     { animation: pulseIcon 2s ease-in-out infinite; }
   filter: grayscale(1);          /* mantém neutro/branco */
   pointer-events: none;          /* não bloqueia cliques */
   user-select: none;
-  z-index: 5;                    /* acima do fundo, atrás dos cards se usar z maiores */
+  z-index: 999;                    /* acima do fundo, atrás dos cards se usar z maiores */
 }
 
 footer {
