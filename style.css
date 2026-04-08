@@ -359,13 +359,13 @@ footer a {
 }
 
 .shaco-container {
-  position: fixed;   /* Ele fica parado em relação à tela */
-  top: 50%;          /* Centraliza verticalmente */
-  left: 5%;          /* Move para a esquerda, onde está o quadrado */
-  transform: translateY(-50%); /* Ajuste fino para centralizar real */
-  width: 35vw;       /* Define a largura proporcional à tela */
-  max-width: 600px;  /* Limite para não ficar gigante em telas 4K */
-  z-index: 1;        /* Fica na frente do fundo, mas atrás dos botões */
+  position: fixed !important;   /* Força a posição fixa */
+  top: 50% !important;          /* Força o alinhamento vertical */
+  left: 5% !important;          /* Força o alinhamento horizontal */
+  transform: translateY(-50%) !important; /* Anula qualquer rotação/movimento do mouse */
+  width: 35vw;
+  max-width: 600px;
+  z-index: 1;
   pointer-events: none;
 }
 
