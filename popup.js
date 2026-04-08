@@ -28,3 +28,9 @@ openBtn?.addEventListener('click', openModal);
 closeBtn?.addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+// SE ENCONTRAR ALGO ASSIM NO SEU POPUP.JS, APAGUE OU COMENTE:
+document.addEventListener('mousemove', (e) => {
+    const shaco = document.querySelector('.shaco-container');
+    // ... códigos que usam e.clientX ou e.clientY ...
+});
