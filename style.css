@@ -100,6 +100,7 @@ ul li + li::before {
 }
 
 ul li a i,
+ul li a .fa-dharmachakra,
 ul li a .fa-youtube,
 ul li a .fa-cat,
 ul li a .fa-twitch{
@@ -131,6 +132,7 @@ ul li:not(:last-child) {
 }
 
  ul li a .fa-twitch { animation: pulseIcon 2s ease-in-out infinite; }
+ ul li a .fa-dharmachakra { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-kickstarter { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-youtube { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-cat { animation: pulseIcon 2s ease-in-out infinite; }
