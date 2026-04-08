@@ -358,30 +358,6 @@ footer a {
   outline-offset: 2px;
 }
 
-.shaco-container {
-  position: fixed;
-  bottom: -10px; /* Ajusta a altura dele em relação ao chão da página */
-  right: 10px;   /* Posiciona no canto inferior direito */
-  width: 280px;  /* Tamanho ideal para não cobrir o conteúdo */
-  z-index: 999;  /* Fica na frente do fundo, mas atrás de popups se necessário */
-  pointer-events: none; /* Garante que ele não bloqueie cliques em botões próximos */
-}
-
-.shaco-video {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Ajuste para telas de celular */
-@media (max-width: 600px) {
-  .shaco-container {
-    width: 180px; /* Menor no celular para não cobrir a tela toda */
-    right: 5px;
-    bottom: 0;
-  }
-}
-
 @keyframes popIn {
   from { transform: scale(.96); opacity: 0; }
   to   { transform: scale(1);   opacity: 1; }
