@@ -359,10 +359,10 @@ footer a {
 }
 
 .shaco-container {
-  position: fixed !important;   /* Força a posição fixa */
-  top: 50% !important;          /* Força o alinhamento vertical */
-  left: 5% !important;          /* Força o alinhamento horizontal */
-  transform: translateY(-50%) !important; /* Anula qualquer rotação/movimento do mouse */
+  position: fixed !important;   /* Força a posição fixa na tela */
+  top: 50% !important;          /* Mantém centralizado verticalmente */
+  left: 5% !important;          /* Mantém na esquerda */
+  transform: translateY(-50%) !important; /* Trava o movimento e ignora o JS */
   width: 35vw;
   max-width: 600px;
   z-index: 1;
