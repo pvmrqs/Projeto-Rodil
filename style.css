@@ -100,8 +100,6 @@ ul li + li::before {
 }
 
 ul li a i,
-ul li a .fa-video,
-ul li a .fa-dharmachakra,
 ul li a .fa-youtube,
 ul li a .fa-cat,
 ul li a .fa-twitch{
@@ -133,8 +131,6 @@ ul li:not(:last-child) {
 }
 
  ul li a .fa-twitch { animation: pulseIcon 2s ease-in-out infinite; }
- ul li a .fa-video { animation: pulseIcon 2s ease-in-out infinite; }
- ul li a .fa-dharmachakra { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-kickstarter { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-youtube { animation: pulseIcon 2s ease-in-out infinite; }
  ul li a .fa-cat { animation: pulseIcon 2s ease-in-out infinite; }
@@ -362,52 +358,16 @@ footer a {
   outline-offset: 2px;
 }
 
-/* ... (seu CSS anterior aqui) ... */
-
-/* CORREÇÃO DO SHACO: ELE NÃO SEGUE MAIS O MOUSE */
 .shaco-container {
-  position: fixed !important;
-  top: 50% !important;
-  left: 5% !important;
-  transform: translateY(-50%) !important;
-  width: 35vw;
-  max-width: 600px;
-  z-index: 1;
+  position: fixed;   /* Ele fica parado em relação à tela */
+  top: 50%;          /* Centraliza verticalmente */
+  left: 5%;          /* Move para a esquerda, onde está o quadrado */
+  transform: translateY(-50%); /* Ajuste fino para centralizar real */
+  width: 35vw;       /* Define a largura proporcional à tela */
+  max-width: 600px;  /* Limite para não ficar gigante em telas 4K */
+  z-index: 1;        /* Fica na frente do fundo, mas atrás dos botões */
   pointer-events: none;
 }
-
-/* ESTILOS DOS CLIPES */
-.video-wrapper {
-  width: 100%;
-  background: #000;
-  display: flex;
-  justify-content: center;
-}
-
-.clip-controls {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  background: rgba(0,0,0,0.8);
-}
-
-.clip-controls button {
-  background: #9146ff; /* Roxo Twitch */
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.clip-controls button:hover {
-  background: #772ce8;
-  transform: scale(1.05);
-}
-
-#closeClips { z-index: 10; }
 
 .shaco-video {
   width: 100%;
@@ -425,5 +385,3 @@ footer a {
   from { transform: scale(.96); opacity: 0; }
   to   { transform: scale(1);   opacity: 1; }
 }
-
-mande o código atualizado
