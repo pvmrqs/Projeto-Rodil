@@ -1,95 +1,58 @@
-const openBtn  = document.getElementById('openPopup');
-const modal    = document.getElementById('popup');
-const closeBtn = modal.querySelector('.modal_close');
-const sfx      = document.getElementById('sfxSono');
+// --- ELEMENTOS DO ÁUDIO ---
+const sfx = document.getElementById('sfxSono');
 
 function playSono() {
-  if (!sfx) return;
-  sfx.currentTime = 0;
-  sfx.volume = 0.7; // ajuste a gosto
-  const p = sfx.play();
-  if (p && p.catch) p.catch(() => {}); // evita warning se algo bloquear
+  if (!sfx) return;
+  sfx.currentTime = 0; // Reseta o áudio para tocar do zero
+  sfx.volume = 0.7;    // Volume a 70%
+  const p = sfx.play();
+  if (p && p.catch) p.catch(() => console.log("Áudio bloqueado pelo navegador"));
 }
 
-function openModal(e){
-  e?.preventDefault();
-  modal.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => closeBtn.focus(), 0);
-  playSono(); // toca ao abrir
+// --- LÓGICA DO POPUP DE IMAGEM (Top 1 Shaco) ---
+const openImgBtn = document.getElementById('openPopup');
+const modalImg = document.getElementById('popup');
+const closeImgBtn = modalImg?.querySelector('.modal_close');
+
+function openModalImg(e) {
+  e?.preventDefault();
+  modalImg.classList.add('is-open');
+  document.body.style.overflow = 'hidden'; // Trava o scroll da página
+  playSono(); // Toca a risada
 }
 
-function closeModal(){
-  modal.classList.remove('is-open');
-  document.body.style.overflow = '';
+function closeModalImg() {
+  modalImg.classList.remove('is-open');
+  document.body.style.overflow = ''; // Destrava o scroll
 }
 
-openBtn?.addEventListener('click', openModal);
-closeBtn?.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+openImgBtn?.addEventListener('click', openModalImg);
+closeImgBtn?.addEventListener('click', closeModalImg);
 
-// SE ENCONTRAR ALGO ASSIM NO SEU POPUP.JS, APAGUE OU COMENTE:
-document.addEventListener('mousemove', (e) => {
-    const shaco = document.querySelector('.shaco-container');
-    // ... códigos que usam e.clientX ou e.clientY ...
-});
-
-// --- LÓGICA DOS CLIPES ---
+// --- LÓGICA DO POPUP DE CLIPES ---
 const totalDeClipes = 40;
 const clipesLocal = [];
 
-// Gera a lista: ./imagens/clipes/clipe 1.mp4 ... clipe 40.mp4
+// Gera a lista de clipes e usa encodeURI para o navegador entender os espaços (ex: "clipe 1.mp4")
 for (let i = 1; i <= totalDeClipes; i++) {
-  clipesLocal.push(`./imagens/clipes/clipe ${i}.mp4`);
+  const caminho = `./imagens/clipes/clipe ${i}.mp4`;
+  clipesLocal.push(encodeURI(caminho));
 }
 
 let indiceAtual = 0;
 const modalC = document.getElementById('modalClips');
+const openClipsBtn = document.getElementById('openClips');
+const closeClipsBtn = document.getElementById('closeClips');
 const videoPlayer = document.getElementById('meuVideoPlayer');
-const videoSource = document.getElementById('videoSource');
-const sfxLaugh = document.getElementById('sfxSono');
+const btnNext = document.getElementById('nextClip');
+const btnPrev = document.getElementById('prevClip');
 
 function carregarVideo(index) {
-  videoSource.src = clipesLocal[index];
-  videoPlayer.load();
-  videoPlayer.play();
-}
-
-// Abrir Clipes
-document.getElementById('openClips').onclick = (e) => {
-  e.preventDefault();
-  sfxLaugh.play(); // Toca a risada ao abrir
-  indiceAtual = Math.floor(Math.random() * totalDeClipes); // Começa em um aleatório
-  carregarVideo(indiceAtual);
-  modalC.classList.add('is-open');
-};
-
-// Fechar Clipes
-document.getElementById('closeClips').onclick = () => {
-  modalC.classList.remove('is-open');
-  videoPlayer.pause();
-};
-
-// Navegação
-document.getElementById('nextClip').onclick = () => {
-  indiceAtual = (indiceAtual + 1) % clipesLocal.length;
-  carregarVideo(indiceAtual);
-};
-
-document.getElementById('prevClip').onclick = () => {
-  indiceAtual = (indiceAtual - 1 + clipesLocal.length) % clipesLocal.length;
-  carregarVideo(indiceAtual);
-};
-
-// --- LÓGICA DO POPUP DE IMAGEM (EXISTENTE) ---
-const modalImg = document.getElementById('popup');
-document.getElementById('openPopup').onclick = (e) => {
-  e.preventDefault();
-  modalImg.classList.add('is-open');
-};
-document.querySelector('#popup .modal_close').onclick = () => {
-  modalImg.classList.remove('is-open');
-};
-
-mande o js atualizado
+  if (clipesLocal[index] && videoPlayer) {
+    videoPlayer.src = clipesLocal[index];
+    videoPlayer.load();
+    
+    // Tenta dar play automaticamente
+    const playPromise = videoPlayer.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => console.
