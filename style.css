@@ -392,36 +392,19 @@ ul li a img.icon {
 /* CSS EXCLUSIVO DO POPUP DE CLIPES          */
 /* ========================================= */
 
+/* ========================================= */
+/* CSS EXCLUSIVO DO POPUP DE CLIPES          */
+/* ========================================= */
+
 #modalClips .modal_content {
   width: 95vw !important;
   max-width: 900px !important;
-  background: #000 !important; /* Fundo 100% preto */
+  background: #111 !important;
   display: flex;
   flex-direction: column;
-  padding: 0; 
-  border: 4px solid #000 !important; /* Borda preta grossa */
-  border-radius: 12px; /* Cantos levemente arredondados */
-  box-shadow: 0 0 40px rgba(0,0,0,0.8); /* Sombra mais sombria ao redor */
+  padding: 0; /* Remove padding pra colar o vídeo nas bordas */
 }
 
-/* --- NOVO: Estilo do ícone no topo --- */
-.shaco-header {
-  width: 100%;
-  background: #050505; /* Um tom quase imperceptível de cinza pro topo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 2px solid #1a1a1a; /* Linha sutil separando o ícone do vídeo */
-}
-
-.shaco-icon-player {
-  height: 45px; /* Tamanho do ícone (aumente se achar pequeno) */
-  width: auto;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2)); /* Leve brilho atrás do ícone */
-}
-
-/* --- Estilo do Vídeo --- */
 .video-wrapper {
   width: 100%;
   background: #000;
@@ -431,38 +414,34 @@ ul li a img.icon {
 #meuVideoPlayer {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9; 
+  aspect-ratio: 16 / 9; /* Garante tela deitada (formato PC) */
   background: #000;
   display: block;
   outline: none;
 }
 
-/* --- Estilo da Barra de Controles (Preta) --- */
 .clip-controls {
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background: #000; /* Fundo preto */
+  background: #1a1a1a;
   gap: 15px;
-  border-top: 2px solid #1a1a1a;
+  border-top: 1px solid #333;
 }
 
-/* --- Estilo dos Botões (Pretos) --- */
 .clip-controls button {
   flex: 1;
-  background: #111; /* Preto quase absoluto */
-  color: #fff;
-  border: 1px solid #333; /* Borda cinza para o botão não sumir no fundo preto */
+  background: #9146ff; /* Roxo Twitch */
+  color: white;
+  border: none;
   padding: 12px 15px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
-  transition: all 0.2s ease;
+  transition: background 0.2s;
 }
 
 .clip-controls button:hover {
-  background: #222; /* Clareia um tiquinho pra indicar o hover */
-  border-color: #555;
-  transform: translateY(-2px);
+  background: #772ce8;
 }
