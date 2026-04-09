@@ -34,13 +34,12 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
 
 
 // ==========================================
-// 2. LÓGICA NOVA (40 CLIPES DA TWITCH)
+// 2. LÓGICA DOS 40 CLIPES (AGORA EM ORDEM)
 // ==========================================
-const totalDeClipes = 1; // DEIXE COMO 1 POR ENQUANTO PARA TESTAR!
+const totalDeClipes = 40; // Lembre de voltar para 40 quando subir todos os vídeos!
 const clipesLocal = [];
 
 for (let i = 1; i <= totalDeClipes; i++) {
-  // Voltei o "imagens/" pro caminho 👇
   clipesLocal.push(encodeURI(`./imagens/clipes/clipe ${i}.mp4`));
 }
 
@@ -66,9 +65,10 @@ function carregarVideo(index) {
 // Abrir Clipes
 btnOpenClips?.addEventListener('click', (e) => {
   e.preventDefault();
-  playSono(); // Também toca a risada ao abrir os vídeos
+  playSono(); 
   
-  indiceAtual = Math.floor(Math.random() * totalDeClipes); // Inicia num clipe aleatório
+  // 👉 MUDANÇA AQUI: Começa sempre no clipe 1 (posição 0 na lista)
+  indiceAtual = 0; 
   carregarVideo(indiceAtual);
   
   modalC.classList.add('is-open');
@@ -81,7 +81,7 @@ btnCloseClips?.addEventListener('click', () => {
   document.body.style.overflow = '';
   if (videoPlayer) {
     videoPlayer.pause();
-    videoPlayer.src = ""; // Limpa a memória
+    videoPlayer.src = ""; 
   }
 });
 
@@ -94,6 +94,11 @@ btnNext?.addEventListener('click', () => {
 btnPrev?.addEventListener('click', () => {
   indiceAtual = (indiceAtual - 1 + clipesLocal.length) % clipesLocal.length;
   carregarVideo(indiceAtual);
+});
+
+// 👉 BÔNUS: Pula para o próximo clipe sozinho quando o atual terminar!
+videoPlayer?.addEventListener('ended', () => {
+  btnNext?.click();
 });
 
 // Fechar ao clicar fora
