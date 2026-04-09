@@ -388,37 +388,56 @@ ul li a img.icon {
   max-height: 35px !important;
 }
 
-/* 3. Deixa o Modal de vídeo gigante e arruma a tela dele */
+/* ========================================= */
+/* CSS EXCLUSIVO DO POPUP DE CLIPES          */
+/* ========================================= */
+
 #modalClips .modal_content {
   width: 95vw !important;
   max-width: 900px !important;
   background: #111 !important;
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* Remove padding pra colar o vídeo nas bordas */
+}
+
+.video-wrapper {
+  width: 100%;
+  background: #000;
+  display: flex;
 }
 
 #meuVideoPlayer {
-  width: 100% !important;
-  aspect-ratio: 16 / 9 !important;
-  background: #000 !important;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Garante tela deitada (formato PC) */
+  background: #000;
+  display: block;
+  outline: none;
 }
 
-/* 4. Arruma a caixa com os botões de Próximo e Anterior */
 .clip-controls {
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background: rgba(0,0,0,0.8);
+  background: #1a1a1a;
   gap: 15px;
+  border-top: 1px solid #333;
 }
 
 .clip-controls button {
   flex: 1;
-  background: #9146ff;
+  background: #9146ff; /* Roxo Twitch */
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 12px 15px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.clip-controls button:hover {
+  background: #772ce8;
 }
