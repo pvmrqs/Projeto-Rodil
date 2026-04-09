@@ -36,11 +36,11 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
 // ==========================================
 // 2. LÓGICA NOVA (40 CLIPES DA TWITCH)
 // ==========================================
-const totalDeClipes = 40;
+const totalDeClipes = 1; // DEIXE COMO 1 POR ENQUANTO PARA TESTAR!
 const clipesLocal = [];
 
-// Gera a lista tratando os espaços (ex: "clipe 1.mp4" vira "clipe%201.mp4")
 for (let i = 1; i <= totalDeClipes; i++) {
+  // Voltei o "imagens/" pro caminho 👇
   clipesLocal.push(encodeURI(`./imagens/clipes/clipe ${i}.mp4`));
 }
 
