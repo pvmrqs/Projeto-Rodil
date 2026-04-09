@@ -404,6 +404,7 @@ ul li a img.icon {
 }
 
 /* 4. Arruma a caixa com os botões de Próximo e Anterior (Roxos) */
+/* 4. Arruma a caixa com os botões de Próximo e Anterior */
 .clip-controls {
   display: flex;
   justify-content: space-between;
@@ -414,11 +415,17 @@ ul li a img.icon {
 
 .clip-controls button {
   flex: 1;
-  background: #9146ff; /* Roxo Twitch */
+  background: #000000; /* Fundo preto */
   color: white;
-  border: none;
+  border: 1px solid #333; /* Borda cinza bem fina para os botões não sumirem no fundo */
   padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  transition: 0.2s; /* Deixa a mudança de cor suave */
+}
+
+/* Opcional: Fica um cinza escuro quando passa o mouse por cima */
+.clip-controls button:hover {
+  background: #222222; 
 }
