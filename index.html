@@ -118,27 +118,25 @@
 
         <img src="./imagens/thumb0-640x360-removebg-preview (1) (1).png" alt="Marca d'água R" class="brand-mark" />
 
-<div id="popup" class="modal" aria-hidden="true">
-      <div class="modal_content">
-        <button type="button" class="modal_close" id="closePopup">✕</button>
-        <img id="popupImage" src="./top_1_shaco_world.PNG" alt="Foto">
-      </div>
+<div id="modalClips" class="modal" aria-hidden="true">
+  <div class="modal_content">
+    <button type="button" class="modal_close" id="closeClips">✕</button>
+    
+    <div class="shaco-header">
+      <img src="./imagens/1688877-middle-removebg-preview.svg" alt="Shaco Icon" class="shaco-icon-player">
     </div>
 
-    <div id="modalClips" class="modal" aria-hidden="true">
-      <div class="modal_content" style="background: #000; max-width: 800px;">
-        <button type="button" class="modal_close" id="closeClips">✕</button>
-        <div class="video-wrapper">
-          <video id="meuVideoPlayer" width="100%" controls>
-            <source id="videoSource" src="" type="video/mp4">
-          </video>
-        </div>
-        <div class="clip-controls">
-          <button id="prevClip"><i class="fas fa-chevron-left"></i> Anterior</button>
-          <button id="nextClip">Próximo <i class="fas fa-chevron-right"></i></button>
-        </div>
-      </div>
+    <div class="video-wrapper">
+      <video id="meuVideoPlayer" controls>
+        </video>
     </div>
+
+    <div class="clip-controls">
+      <button id="prevClip"><i class="fas fa-chevron-left"></i> Anterior</button>
+      <button id="nextClip">Próximo <i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
     
 
  <audio id="sfxSono" preload="auto">
