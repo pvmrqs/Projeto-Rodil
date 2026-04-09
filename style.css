@@ -362,16 +362,52 @@ footer a {
   outline-offset: 2px;
 }
 
+/* ... (seu CSS anterior aqui) ... */
+
+/* CORREÇÃO DO SHACO: ELE NÃO SEGUE MAIS O MOUSE */
 .shaco-container {
-  position: fixed !important;   /* Força a posição fixa na tela */
-  top: 50% !important;          /* Mantém centralizado verticalmente */
-  left: 5% !important;          /* Mantém na esquerda */
-  transform: translateY(-50%) !important; /* Trava o movimento e ignora o JS */
+  position: fixed !important;
+  top: 50% !important;
+  left: 5% !important;
+  transform: translateY(-50%) !important;
   width: 35vw;
   max-width: 600px;
   z-index: 1;
   pointer-events: none;
 }
+
+/* ESTILOS DOS CLIPES */
+.video-wrapper {
+  width: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+}
+
+.clip-controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: rgba(0,0,0,0.8);
+}
+
+.clip-controls button {
+  background: #9146ff; /* Roxo Twitch */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.clip-controls button:hover {
+  background: #772ce8;
+  transform: scale(1.05);
+}
+
+#closeClips { z-index: 10; }
 
 .shaco-video {
   width: 100%;
