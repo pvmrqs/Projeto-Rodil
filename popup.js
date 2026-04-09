@@ -1,93 +1,97 @@
-const openBtn  = document.getElementById('openPopup');
-const modal    = document.getElementById('popup');
-const closeBtn = modal.querySelector('.modal_close');
-const sfx      = document.getElementById('sfxSono');
+// --- CONFIGURAÇÕES GERAIS E ELEMENTOS ---
+const sfxLaugh = document.getElementById('sfxSono');
 
-function playSono() {
-  if (!sfx) return;
-  sfx.currentTime = 0;
-  sfx.volume = 0.7; // ajuste a gosto
-  const p = sfx.play();
-  if (p && p.catch) p.catch(() => {}); // evita warning se algo bloquear
-}
+// Popup de Imagem (Top 1 Shaco)
+const modalImg = document.getElementById('popup');
+const openImgBtn = document.getElementById('openPopup');
+const closeImgBtn = modalImg.querySelector('.modal_close');
 
-function openModal(e){
-  e?.preventDefault();
-  modal.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => closeBtn.focus(), 0);
-  playSono(); // toca ao abrir
-}
+// Popup de Clipes
+const modalC = document.getElementById('modalClips');
+const openClipsBtn = document.getElementById('openClips');
+const closeClipsBtn = document.getElementById('closeClips');
+const videoPlayer = document.getElementById('meuVideoPlayer');
+const btnNext = document.getElementById('nextClip');
+const btnPrev = document.getElementById('prevClip');
 
-function closeModal(){
-  modal.classList.remove('is-open');
-  document.body.style.overflow = '';
-}
-
-openBtn?.addEventListener('click', openModal);
-closeBtn?.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-// SE ENCONTRAR ALGO ASSIM NO SEU POPUP.JS, APAGUE OU COMENTE:
-document.addEventListener('mousemove', (e) => {
-    const shaco = document.querySelector('.shaco-container');
-    // ... códigos que usam e.clientX ou e.clientY ...
-});
-
-// --- LÓGICA DOS CLIPES ---
+// --- LÓGICA DOS 40 CLIPES ---
 const totalDeClipes = 40;
 const clipesLocal = [];
 
-// Gera a lista: ./imagens/clipes/clipe 1.mp4 ... clipe 40.mp4
+// Gera a lista tratando os espaços nos nomes (ex: "clipe 1.mp4" vira "clipe%201.mp4")
 for (let i = 1; i <= totalDeClipes; i++) {
-  clipesLocal.push(`./imagens/clipes/clipe ${i}.mp4`);
+  const caminho = `./imagens/clipes/clipe ${i}.mp4`;
+  clipesLocal.push(encodeURI(caminho));
 }
 
 let indiceAtual = 0;
-const modalC = document.getElementById('modalClips');
-const videoPlayer = document.getElementById('meuVideoPlayer');
-const videoSource = document.getElementById('videoSource');
-const sfxLaugh = document.getElementById('sfxSono');
 
 function carregarVideo(index) {
-  videoSource.src = clipesLocal[index];
-  videoPlayer.load();
-  videoPlayer.play();
+  if (clipesLocal[index]) {
+    videoPlayer.src = clipesLocal[index];
+    videoPlayer.load();
+    videoPlayer.play().catch(() => console.log("Clique no play para iniciar o vídeo"));
+  }
 }
 
-// Abrir Clipes
-document.getElementById('openClips').onclick = (e) => {
+// --- FUNÇÕES DE ABRIR/FECHAR ---
+
+// Abrir Modal de Imagem
+openImgBtn.onclick = (e) => {
   e.preventDefault();
-  sfxLaugh.play(); // Toca a risada ao abrir
-  indiceAtual = Math.floor(Math.random() * totalDeClipes); // Começa em um aleatório
+  modalImg.classList.add('is-open');
+  if (sfxLaugh) sfxLaugh.play();
+};
+
+// Fechar Modal de Imagem
+closeImgBtn.onclick = () => {
+  modalImg.classList.remove('is-open');
+};
+
+// Abrir Modal de Clipes
+openClipsBtn.onclick = (e) => {
+  e.preventDefault();
+  if (sfxLaugh) {
+    sfxLaugh.currentTime = 0;
+    sfxLaugh.play();
+  }
+  // Sorteia um clipe inicial para não ser sempre o mesmo
+  indiceAtual = Math.floor(Math.random() * totalDeClipes);
   carregarVideo(indiceAtual);
   modalC.classList.add('is-open');
+  document.body.style.overflow = 'hidden'; // Trava o scroll da página
 };
 
-// Fechar Clipes
-document.getElementById('closeClips').onclick = () => {
+// Fechar Modal de Clipes
+closeClipsBtn.onclick = () => {
   modalC.classList.remove('is-open');
   videoPlayer.pause();
+  videoPlayer.src = ""; // Limpa o vídeo para economizar memória
+  document.body.style.overflow = '';
 };
 
-// Navegação
-document.getElementById('nextClip').onclick = () => {
+// --- NAVEGAÇÃO DOS CLIPES ---
+
+btnNext.onclick = () => {
   indiceAtual = (indiceAtual + 1) % clipesLocal.length;
   carregarVideo(indiceAtual);
 };
 
-document.getElementById('prevClip').onclick = () => {
+btnPrev.onclick = () => {
   indiceAtual = (indiceAtual - 1 + clipesLocal.length) % clipesLocal.length;
   carregarVideo(indiceAtual);
 };
 
-// --- LÓGICA DO POPUP DE IMAGEM (EXISTENTE) ---
-const modalImg = document.getElementById('popup');
-document.getElementById('openPopup').onclick = (e) => {
-  e.preventDefault();
-  modalImg.classList.add('is-open');
+// Fechar modais ao clicar fora (no fundo escuro)
+window.onclick = (e) => {
+  if (e.target === modalImg) closeImgBtn.click();
+  if (e.target === modalC) closeClipsBtn.click();
 };
-document.querySelector('#popup .modal_close').onclick = () => {
-  modalImg.classList.remove('is-open');
-};
+
+// Fechar no ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (modalImg.classList.contains('is-open')) closeImgBtn.click();
+    if (modalC.classList.contains('is-open')) closeClipsBtn.click();
+  }
+});
